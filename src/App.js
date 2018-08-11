@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { UserForm } from './components/UserForm';
+import { RepoList } from './components/RepoList';
 import { loadRepos } from './lib/reposService';
 
 class App extends Component {
@@ -66,20 +67,7 @@ class App extends Component {
             <option value="">name</option>
           </select>
         </label>
-        <ul className="repos-list">
-          <li className="repos-list-item">
-            <a href="http://react.com" target="_blank" rel="noopener noreferrer" className="repos-list-item__link">React</a>
-            <p className="repos-list-item__stars">123</p>
-          </li>
-          <li className="repos-list-item">
-            <a href="http://redux.com" target="_blank" rel="noopener noreferrer" className="repos-list-item__link">Redux</a>
-            <p className="repos-list-item__stars">55</p>
-          </li>
-          <li className="repos-list-item">
-            <a href="http://vue.com" target="_blank" rel="noopener noreferrer" className="repos-list-item__link">Vue</a>
-            <p className="repos-list-item__stars">14</p>
-          </li>
-        </ul>
+        <RepoList repos={this.state.repos}/>
       </div>
     );
   }

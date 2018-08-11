@@ -12,7 +12,8 @@ export const loadRepos = (username) =>
                 ({
                     name: repo.name,
                     stargazers_count: repo.stargazers_count,
-                    url: repo.url
+                    url: repo.html_url,
+                    id: repo.id
                 })
             );
         });
