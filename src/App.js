@@ -2,12 +2,31 @@ import React, { Component } from 'react';
 import './App.css';
 import { UserForm } from './components/UserForm';
 import { RepoList } from './components/RepoList';
+import { RepoSort } from './components/RepoSort';
 import { loadRepos } from './lib/reposService';
 
 class App extends Component {
   state = {
     repos: [],
     currentUser: ''
+  }
+
+  handleSortChange = (event) => {
+    const updatedRepos = [ ...this.state.repos ];
+    const sortBy = event.target.value;
+
+    updatedRepos.sort((repoA, repoB) => {
+      switch(sortBy) {
+        case 'name':
+          return repoA.name.toLowerCase() < repoB.name.toLowerCase() ? -1 : 1;
+        default:
+          return repoB.stargazers_count - repoA.stargazers_count;
+      }
+    });
+
+    this.setState({
+      repos: updatedRepos
+    });
   }
 
   handleEmptySubmit = (event) => {
@@ -60,13 +79,7 @@ class App extends Component {
           errorMessage={this.state.errorMessage}
           loadingMessage={this.state.loadingMessage}
         />
-        <label className="sort-results">
-          <span className="sort-results__label">Sort repositories by</span>
-          <select className="sort-results__select">
-            <option value="">stargazers</option>
-            <option value="">name</option>
-          </select>
-        </label>
+        <RepoSort handleSortChange={this.handleSortChange} />
         <RepoList repos={this.state.repos}/>
       </div>
     );
