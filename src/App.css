@@ -68,7 +68,7 @@
 .repo-item__stars {
   flex: 1;
   background-repeat: no-repeat;
-  background-image: url('./star.svg');
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/2/21/Twemoji_2b50.svg');
   background-position: 60px -1px;
 }
 
